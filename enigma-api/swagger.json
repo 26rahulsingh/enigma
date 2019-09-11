@@ -1,0 +1,154 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Bindass Car Kharido.",
+        "version": "1.0.0",
+        "title": "Bindass Car Kharido.",
+        "contact": {
+            "email": ""
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/enigma",
+    
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/requestVehicleInfo": {
+            "post": {
+                
+                "summary": "Request Vehicle Information",
+                "description": "Request Vehicle Information",
+                "operationId": "requestVehicleInfo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Vehicle Information object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/VehicleInformation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/responseVehicleInfo": {
+            "post": {
+                "summary": "Response Vehicle Information",
+                "description": "Response Vehicle Infomation",
+                "operationId": "responseVehicleInfo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Vehicle Response object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/VehicleResponseInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/getVehicleHistory": {
+            "post": {
+                "summary": "Get Vehicle History",
+                "description": "Get Vehicle History",
+                "operationId": "getVehicleHistory",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Vehicle object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/VehicleHistory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/VehicleHistory"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "VehicleInformation": {
+            "type": "object",
+            "properties": {
+                "vehicleNumber": {
+                    "type": "string",
+                    "description": "Vehicle Number"
+                },
+                "chasisNumber": {
+                    "type": "string",
+                    "description": "Chasis Number"
+                }
+            }
+        },
+        "VehicleResponseInfo": {
+            "type": "object",
+            "properties": {
+                "VehicleNumber": {
+                    "type": "string",
+                    "description": "Vehicle Number"
+                }
+            }
+        },
+        "VehicleHistory": {
+            "type": "object",
+            "properties": {
+                "vehicleNumber": {
+                    "type": "string",
+                    "description": "Vehicle Number"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}
